@@ -68,7 +68,7 @@
       position: relative;
     }
 
-    button {
+    button, .btn-tiktok {
       padding: 14px 28px;
       font-size: 1.1rem;
       font-weight: 600;
@@ -76,6 +76,8 @@
       border-radius: 50px;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      display: inline-block;
     }
 
     .btn-sim {
@@ -96,6 +98,19 @@
       z-index: 10;
     }
 
+    /* Botão do TikTok na tela de sucesso */
+    .btn-tiktok {
+      background-color: #000000;
+      color: white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      margin-top: 20px;
+    }
+
+    .btn-tiktok:hover {
+      transform: scale(1.08);
+      background-color: #222222;
+    }
+
     /* Mensagem Final escondida por padrão */
     .success-screen {
       display: none;
@@ -111,6 +126,7 @@
       color: #444;
       font-size: 1.2rem;
       line-height: 1.5;
+      margin-bottom: 10px;
     }
 
     @media (max-width: 480px) {
@@ -122,7 +138,7 @@
       }
     }
   </style>
-  <!-- Biblioteca externa leve para soltar confetes quando clicar no SIM -->
+  <!-- Biblioteca externa para soltar confetes -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
@@ -130,7 +146,7 @@
   <div class="card" id="mainCard">
     <!-- TELA 1: Pergunta -->
     <div id="questionScreen">
-      <div class="heart-icon">💖</div>
+      <div class="heart-icon">☕</div>
       <h1>Tafne, você poderia me passar seu Whatsapp?</h1>
       <p class="subtitle">Prometo que é por uma boa causa! 😉</p>
       
@@ -142,58 +158,7 @@
 
     <!-- TELA 2: Sucesso (Mensagem pós-clique) -->
     <div class="success-screen" id="successScreen">
-      <div class="heart-icon">👑✨</div>
+      <div class="heart-icon">☕✨</div>
       <h2>Perfeito!</h2>
       <p>Fico no aguardo, Cinderela. 😉</p>
-    </div>
-  </div>
-
-  <script>
-    const btnNao = document.getElementById('btnNao');
-    const btnSim = document.getElementById('btnSim');
-    const questionScreen = document.getElementById('questionScreen');
-    const successScreen = document.getElementById('successScreen');
-
-    // Função para mover o botão Não
-    function desviarBotao() {
-      // Pega o tamanho da janela do navegador
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-
-      // Pega o tamanho do botão
-      const btnWidth = btnNao.offsetWidth;
-      const btnHeight = btnNao.offsetHeight;
-
-      // Calcula posições aleatórias mantendo o botão dentro da tela
-      const randomX = Math.floor(Math.random() * (windowWidth - btnWidth - 40)) + 20;
-      const randomY = Math.floor(Math.random() * (windowHeight - btnHeight - 40)) + 20;
-
-      // Muda para posicionamento fixo para 'fugir' para qualquer lugar da tela
-      btnNao.style.position = 'fixed';
-      btnNao.style.left = `${randomX}px`;
-      btnNao.style.top = `${randomY}px`;
-    }
-
-    // Funciona para passar o mouse (PC) e para o toque em celular (Touch)
-    btnNao.addEventListener('mouseover', desviarBotao);
-    btnNao.addEventListener('touchstart', (e) => {
-      e.preventDefault(); // Evita que ela consiga clicar no touch sem querer
-      desviarBotao();
-    });
-
-    // Ação ao clicar no botão SIM
-    btnSim.addEventListener('click', () => {
-      // Esconde a pergunta e mostra a mensagem final
-      questionScreen.style.display = 'none';
-      successScreen.style.display = 'block';
-
-      // Lança efeito de confetes na tela
-      confetti({
-        particleCount: 120,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-    });
-  </script>
-</body>
-</html>
+      <a href="https://www.tiktok.com/@SEU_USUARIO" target="_blank" class="btn-tiktok">Abrir TikTok 🎬
