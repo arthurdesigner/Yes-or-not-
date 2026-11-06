@@ -49,14 +49,8 @@
     h1 {
       color: #ff4b72;
       font-size: 1.8rem;
-      margin-bottom: 15px;
+      margin-bottom: 25px;
       line-height: 1.3;
-    }
-
-    p.subtitle {
-      color: #666;
-      font-size: 1.05rem;
-      margin-bottom: 30px;
     }
 
     .btn-container {
@@ -148,7 +142,6 @@
     <div id="questionScreen">
       <div class="heart-icon">☕</div>
       <h1>Tafne, você poderia me passar seu Whatsapp?</h1>
-      <p class="subtitle">Prometo que é por uma boa causa! 😉</p>
       
       <div class="btn-container">
         <button class="btn-sim" id="btnSim">Sim! ✨</button>
@@ -161,4 +154,48 @@
       <div class="heart-icon">☕✨</div>
       <h2>Perfeito!</h2>
       <p>Fico no aguardo, Cinderela. 😉</p>
-      <a href="https://www.tiktok.com/@SEU_USUARIO" target="_blank" class="btn-tiktok">Abrir TikTok 🎬
+      <a href="https://www.tiktok.com/@arthurlovecoffee0" target="_blank" class="btn-tiktok">Abrir TikTok 🎬</a>
+    </div>
+  </div>
+
+  <script>
+    const btnNao = document.getElementById('btnNao');
+    const btnSim = document.getElementById('btnSim');
+    const questionScreen = document.getElementById('questionScreen');
+    const successScreen = document.getElementById('successScreen');
+
+    // Função para mover o botão Não
+    function desviarBotao() {
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const btnWidth = btnNao.offsetWidth;
+      const btnHeight = btnNao.offsetHeight;
+
+      const randomX = Math.floor(Math.random() * (windowWidth - btnWidth - 40)) + 20;
+      const randomY = Math.floor(Math.random() * (windowHeight - btnHeight - 40)) + 20;
+
+      btnNao.style.position = 'fixed';
+      btnNao.style.left = `${randomX}px`;
+      btnNao.style.top = `${randomY}px`;
+    }
+
+    btnNao.addEventListener('mouseover', desviarBotao);
+    btnNao.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      desviarBotao();
+    });
+
+    // Ação ao clicar no botão SIM
+    btnSim.addEventListener('click', () => {
+      questionScreen.style.display = 'none';
+      successScreen.style.display = 'block';
+
+      confetti({
+        particleCount: 120,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    });
+  </script>
+</body>
+</html>
